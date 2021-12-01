@@ -2,12 +2,12 @@ name: Android Build
 
 # Trigger on every push and pull request to the 'main' branch
 on: 
-  pull request:
+  pull_request:
   push:
     branches:
-      - main
+      - master
 
-  jobs:
+jobs:
     build:
 
       runs-on: windows-latest
