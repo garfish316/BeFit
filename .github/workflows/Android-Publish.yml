@@ -2,9 +2,7 @@ name: Android Publish
 
 # Trigger on push to the 'master' branch
 on:
-  push:
-    branches:
-      - master
+  workflow_dispatch:
 
 jobs:
   build:
