@@ -1,4 +1,4 @@
-package com.example.befit;
+package com.project.befit;
 
 import android.content.Context;
 

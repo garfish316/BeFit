@@ -6,7 +6,7 @@ android {
     compileSdk 31
 
     defaultConfig {
-        applicationId "com.example.befit"
+        applicationId "com.project.befit"
         minSdk 26
         targetSdk 31
         versionCode 1

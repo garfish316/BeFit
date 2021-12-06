@@ -1,8 +1,10 @@
-package com.example.befit;
+package com.project.befit;
 
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.os.Bundle;
+
+import com.example.befit.R;
 
 public class MainActivity extends AppCompatActivity {
 
