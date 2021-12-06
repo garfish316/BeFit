@@ -15,20 +15,25 @@ jobs:
       steps:
         - uses: actions/checkout@v1
 
+        # Setting up our JDK
         - name: Set Up JDK
           uses: actions/setup-java@v1
           with:
             java-version: 11.0
 
+        # Changing permissions for the virtual environment
         - name: Change wrapper permissions
           run: chmod +x ./gradlew
 
+        # Running Tests
         - name: Run Tests        
           run: ./gradlew test
           
+        # Building our Android App Bundle  
         - name: Build Release AAB
           id: buildRelease
           run: ./gradlew bundleRelease
 
+        # Building the project
         - name: Build Project              
           run: ./gradlew assemble
