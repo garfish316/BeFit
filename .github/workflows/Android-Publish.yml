@@ -1,8 +1,10 @@
 name: Android Publish
 
-# Trigger on push to the 'master' branch
+# Trigger on every push to the 'master' branch
 on:
-  workflow_dispatch:
+  push:
+    branches:
+      - master
 
 jobs:
   build:
@@ -12,23 +14,30 @@ jobs:
     steps:
       - uses: actions/checkout@v1
 
+      # Setting up our JDK
       - name: Set Up JDK
         uses: actions/setup-java@v1
         with:
           java-version: 11.0
 
+      # Changing permissions for the virtual environment
       - name: Change wrapper permissions
         run: chmod +x ./gradlew
 
+      # Running tests
       - name: Run Tests
         run: ./gradlew test
 
+      # Builds the project
       - name: Build Project
         run: ./gradlew build
 
+      # Builds our release Android App Bundle
       - name: Build Release AAB      
         run: ./gradlew bundleRelease
 
+      # Signs the Android App Bundle so that it can deploy to the PLay Store
+      # Uses GitHub Secrets
       - name: Sign AAB               
         uses: r0adkll/sign-android-release@v1
         with:
@@ -38,14 +47,16 @@ jobs:
           keyStorePassword: ${{ secrets.STORE_KEY_PASSWORD }}
           keyPassword: ${{ secrets.KEY_PASSWORD }}
           
+      # Creating our service account .json file
       - name: Create service_account.json
         id: createServiceAccount
         run: echo '${{ secrets.SERVICE_ACCOUNT_JSON }}' > service_account.json
 
+      # Deploy to the Google Play Store
       - name: Deploy to Play Store  
         uses: r0adkll/upload-google-play@v1
         with:
           serviceAccountJson: service_account.json
-          packageName: com.tomerpacific.laundry
+          packageName: com.example.befit
           releaseFiles: app/build/outputs/bundle/release/app-release.aab
           track: production
