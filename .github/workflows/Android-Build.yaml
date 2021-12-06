@@ -28,11 +28,6 @@ jobs:
         # Running Tests
         - name: Run Tests        
           run: ./gradlew test
-          
-        # Building our Android App Bundle  
-        - name: Build Release AAB
-          id: buildRelease
-          run: ./gradlew bundleRelease
 
         # Building the project
         - name: Build Project              
