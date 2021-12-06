@@ -57,6 +57,6 @@ jobs:
         uses: r0adkll/upload-google-play@v1
         with:
           serviceAccountJson: service_account.json
-          packageName: com.tomerpacific.laundry
+          packageName: com.example.befit
           releaseFiles: app/build/outputs/bundle/release/app-release.aab
           track: production
